@@ -46,4 +46,46 @@ Templates:
     {% endblock %}
 29. {% for item in ls.item_set.all %}                           (dont put the parentehsis at the end as it will cause error)
 30. MAKE SURE INDENT IS OFF
-31. 
+
+Forms:
+31. from django import forms                                    (pass in a form variable as a class)
+
+    class CreateNewList(forms.Form):
+    name = forms.CharField(label="Name", max_length=200)
+    check = forms.BooleanField()
+32. form.as_table                                               (different ways of displaying the form)
+    form.as_p
+    form.as_ul
+33. {% csrf_token %}                                            (always need this when making a new form)
+34. POST for secure stuff and database
+    GET for just retrieving information
+35. if response.method == "POST":                               (create the new todolist using the form)
+        form = CreateNewList(response.POST)                     (first check if the form is a POST by seeing if the fields are filled in)
+        
+        if form.is_valid():                                     (django automatically checks for valid inputs)
+            n = form.cleaned_data["name"]
+            t = ToDoList(name=n)
+            t.save()
+36. HttpResponseRedirect("/%i"%t.id)                            (redirects me to the page of the todoList after i make it)
+37. <button type="submit",                                      (makes a diciontary value of save:save)
+            name="save", 
+            value="save">
+        Save
+    </button>
+38. if response.POST.get("save"):                               (if I clicked the save button this is what happens)
+    for item in ls.item_set.all():
+        if response.POST.get(f"c{str(item.id)}" )  == "clicked":
+            item.complete = True
+        else:
+            item.complete = False
+        item.save()
+39. elif response.POST.get("newItem"):                           (if i clicked the new item button this happens)
+        txt = response.POST.get("new")
+        
+        if len(txt) > 2:
+            ls.item_set.create(text=txt, complete=False)
+        else:
+            print("invalid")
+
+Sidebar:
+40.
