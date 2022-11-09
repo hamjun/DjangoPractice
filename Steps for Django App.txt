@@ -46,4 +46,4 @@ Templates:
     {% endblock %}
 29. {% for item in ls.item_set.all %}                           (dont put the parentehsis at the end as it will cause error)
 30. MAKE SURE INDENT IS OFF
-31.
+31. 
