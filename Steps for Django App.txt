@@ -1,0 +1,49 @@
+Setup:
+1. pip install django                                           (install django)
+2. django-admin startproject mysite                             (create directory)
+3. cd mysite                                                    (go into the directory)
+4. python manage.py startapp main                               (create my own app)
+5. python manage.py runserver                                   (test the server to see if it works)
+6. views.py                                                     (manage the HTTP requests/responses)
+7. urls.py                                                      (directory from main(mysite) to acutal main(main) using paths)
+8. add main to settings.py                                      (let django recoginze that I have my custom app that needs to be built)
+9. python manage.py migrate                                     (apply changes that I made to the settings.py)
+
+Databases:
+10. models.py                                                   (Make models in SQLite)
+11. class for models (models.Model)                             (ToDoList and Item linked with a foreign key)
+12. python manage.py makemigrations main                        (Tell django that I made new models) 
+13. python manage.py migrate                                    (apply the change after i make it, revert function allowed)
+14. python manage.py shell                                      (opens up a shell so that you can do thing to database)
+15. from main.models import Item, ToDoList                      (make a item in the database)
+    t = ToDoList(name="Jun\'s List")
+    t.save()
+16. ToDoList.objects.all()                                      (access elements in the database)
+    ToDoList.objects.get(id=1)
+    ToDoList.objects.get(name="Jun's List") 
+17. t.item_set.create(text="go to the mall", complete=False)    (add item that is relationally bound)
+    t.item_set.all()                                            (see all elements)
+    t.item_set.get(id=1)
+18. path("<int:id>", views.index, name="index")                 (add this to url path so we can get id from element)
+19. ls = ToDoList.objects.get(id = id)                          (access the element by id through the url)
+20. t.filter(name__startswith="Jun")                            (query elements in the database)
+    t.filter(id=1)
+21. del_object = t.get(id=1)                                    (how to delete elements from the database)
+    del_object.delete()
+
+Admin Daseboard:
+22. python manage.py createsuperuser                            (create credentials for user and password)
+23. admin.py admin.site.register(x)                             (make it so that we can see the models in our admin site)
+
+Templates:
+24. Create a template and main folder                           (main subdir needs to be the same name as the app for django to recognize)
+25. Base.html and home.html                                     (Base template that all other templates will extend from)
+26. Update views.py and urls.py                                 (Allow navigation to the html template that we wrote)
+27. render(response, "main/base.html", {"name":ls.name})        (get the variables that were called in the html tempaltes in this case "name")
+28. {% block content %} {% endblock %}                          (the block "content" can be overwritten in other templates)
+    {% block content%}
+    <h1>Home Page</h1>
+    {% endblock %}
+29. {% for item in ls.item_set.all %}                           (dont put the parentehsis at the end as it will cause error)
+30. MAKE SURE INDENT IS OFF
+31.
