@@ -88,4 +88,7 @@ Forms:
             print("invalid")
 
 Sidebar:
-40.
+40. CSS in main file
+
+Bootstrap:
+https://getbootstrap.com/
