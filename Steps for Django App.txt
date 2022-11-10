@@ -92,3 +92,24 @@ Sidebar:
 
 Bootstrap:
 https://getbootstrap.com/
+
+Login Auth
+41. Create register dir
+42. Add into views.py
+    from django.contrib.auth import login, authenticate         (django imports for the custom form)
+    from django.contrib.auth.forms import UserCreationForm
+
+    form = UserCreationForm()                                   (This is all we need for the djange form to show up)
+    return render(response, "register/register.html", {"form":form})
+43. Create template for register                                (html for the form)
+    cd templates cd register register.html                      (extends the base.html)
+44. Add register as a path into main/mysite/urls.py             
+45. Add register as an app into main/mysite/settings.py
+46. pip install django-crispy_forms                             (install crispy forms)
+46. 'crispy_forms', CRISPY_TEMPLATE_PACK="boostrap4"            (add this into settings.py)
+47. cd registration cd login.html                               (create some files to handle login/logout)
+48. mysite/main.urls.py                                         (add files into django)
+    path('', include("django.contrib.auth.urls")),
+49. response.user                                               (how to get the user data)
+50. user = models.ForeignKey(User, on_delete=models.CASCADE)    (Every ToDoList is linked to some kind of User)
+51.
